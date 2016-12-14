@@ -39,15 +39,15 @@ public class RoomController {
     private RoomService roomService;
     @Autowired
     private RoomThin roomThin;
-    @Value(value = "${spring.data.mongodb.uri:127.0.0.1}")
-    private String url;
+    @Value(value = "${spring.data.mongodb.database}")
+    private String db;
     @RequestMapping("/room")
     public List<Room> getListRoom(){
 
-        System.out.println("=======>url:"+url);
+        System.out.println("=======>db:"+db);
         List<Room> rooms = roomService.selectByHouseId(133L);
         System.out.println("==========>"+mongoClient.toString());
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("admin");
+        MongoDatabase mongoDatabase = mongoClient.getDatabase(db);
         GridFSBucket gridFSBucket = GridFSBuckets.create(mongoDatabase);
         GridFSUploadOptions gridFSUploadOptions = new GridFSUploadOptions()
                 .chunkSizeBytes(255 * 1024);
