@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.es.fileservice.dao.RoomMapper">
+    <resultMap id="BaseResultMap" type="com.es.fileservice.model.Room">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="house_id" property="houseId" jdbcType="BIGINT"/>
+        <result column="roomname" property="roomName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="image_id" property="imageId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, house_id, roomname, remark,image_id,status,create_time,update_time
+    </sql>
+    <insert id="insert" parameterType="com.es.fileservice.model.Room" useGeneratedKeys="true" keyProperty="id">
+        insert into room (id, house_id, roomname, remark,image_id,status,create_time,update_time)
+        values (#{id,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT},
+        #{roomName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},#{imageId,jdbcType=INTEGER},#{status,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from room
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <!--update by wangrichao-->
+    <select id="selectByHouseId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from room
+        where house_id = #{houseId,jdbcType=BIGINT}
+        ORDER BY id
+    </select>
+
+    <select id="selectRoomInfoByHouseId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from room
+        where house_id = #{houseId,jdbcType=BIGINT}
+        ORDER BY id
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from room
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByRoomName" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from room
+        where roomname = #{roomName,jdbcType=BIGINT}
+    </select>
+
+
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from room
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+
+
+</mapper>

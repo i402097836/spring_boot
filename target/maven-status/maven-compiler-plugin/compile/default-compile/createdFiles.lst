@@ -1,0 +1,9 @@
+com\es\fileservice\dao\RoomMapper.class
+com\es\fileservice\servcie\impl\RoomServiceImpl.class
+com\es\fileservice\servcie\RoomService.class
+com\es\fileservice\Application.class
+com\es\fileservice\thin\impl\RoomThinImpl.class
+com\es\fileservice\thin\RoomThin.class
+com\es\fileservice\model\Room.class
+com\es\fileservice\controller\RoomController.class
+com\es\fileservice\controller\HelloController.class
